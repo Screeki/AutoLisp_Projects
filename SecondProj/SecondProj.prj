@@ -1,0 +1,16 @@
+;;; VLisp project file [V2.0] SecondProj saved to:[c:\Users\nvbtd\Desktop\Question\Lisp\SecondProj] at:[11/20/2022]
+(VLISP-PROJECT-LIST 
+  :NAME
+  SecondProj
+  :OWN-LIST
+  ("lisp" "c:/Users/nvbtd/Downloads/lab2_I")
+  :FAS-DIRECTORY
+  nil
+  :TMP-DIRECTORY
+  nil
+  :PROJECT-KEYS
+  (:BUILD (:standard))
+  :CONTEXT-ID
+  :AUTOLISP
+)
+;;; EOF

@@ -1,0 +1,51 @@
+ В файле  GOODS.DAT каждая строка имеет вид 
+(name group_name expiry price amount) и означает  
+"В  магазине  имеется  товар  name  из группы товаров group_name  со  сроком  годности  expiry,  с  ценой  price  и   в количестве amount". 
+
+name -  название  товара  (например,  Tea_Brooke_Bond), 
+group_name  -  название  группы  товаров  (Tea);  
+expiry  -  срок годности в форме (month year)  (например:  (10  1998));  
+price - цена в рублях (3500);  
+amount - количество (кг,  шт,  пачек, ...) товара (150); 
+
+В файле MADE_IN.DAT каждая строка имеет вид 
+(name country factory) и означает 
+"Товар name произведен в стране country на предприятии factory".
+
+month  - номер  месяца  (10);  year  -  год (1998);  
+country  -  название страны,  в которой произведен товар (India); 
+factory -  названия  предприятия,  на  котором  изготовлен  товар (Indian Tea Corporation). 
+
+
+"суммарную    стоимость    товаров Екатеринбургского  мясокомбината".  
+Результат  работы   программа должна выводить на экран. 
+
+
+(defun compute(year month)
+ 
+
+  (setq goods (open "C:/Users/Alexandra.Glebova/Desktop/GOODS.DAT" "r"))
+  (setq goodsName 0)
+  (setq result 0)
+  (setq madeInName 0)
+  (setq madeInCountry 1)
+  (setq russiaString "Russia")
+
+  (while (setq goodsLine (read-line goods))
+    (setq madeIn (open "C:/Users/Alexandra.Glebova/Desktop/MADE_IN.DAT" "r"))
+    
+    (while (setq madeInLine (read-line madeIn))
+      
+      (if (and (= (nth madeInName (read madeInLine)) (nth goodsName (read goodsLine))) (/= (nth madeInCountry (read madeInLine)) (read russiaString)))
+        (if (or (< (nth 3 (read goodsLine)) year) (and(= (nth 3 (read goodsLine)) year) (< (nth 2 (read goodsLine)) month)))
+          (setq result (+ result (* (nth 4 (read goodsLine)) (nth 5 (read goodsLine)))))
+        )
+      )
+    )
+    (close madeIn)
+  )
+
+  (close goods)
+  (print result)
+  (prin1)
+)
